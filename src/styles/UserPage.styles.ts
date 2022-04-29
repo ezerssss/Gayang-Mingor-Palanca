@@ -22,8 +22,8 @@ const extraSmallMobileTranslate = keyframes`
   100% {top: 50px;}
 `;
 const goUp = keyframes`
-  0% {top: 100vh;}
-  100% {top: 180px;}
+  0% {margin-top: 100vh;}
+  100% {margin-top: 180px; margin-bottom: 50px;}
 `;
 const allowOverflow = keyframes`
   0$ {overflow: hidden;}
@@ -87,10 +87,7 @@ export const WelcomeText = styled.div<PropsInterface>`
 `;
 
 export const PalancasContainer = styled.div`
-  position: absolute;
-  top: 100vh;
-  left: 0;
-  right: 0;
+  margin-top: 100vh;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
