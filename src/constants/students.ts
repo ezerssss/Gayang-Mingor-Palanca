@@ -63,7 +63,7 @@ const students = [
   { value: 'Luis Antonio Magpayo', label: 'Magpayo', section: 'Block C' },
   { value: 'Lindsay Marie Manlegro', label: 'Manlegro', section: 'Block C' },
   { value: 'Christian Manso', label: 'Manso', section: 'Block B' },
-  { value: 'Jarell Brigette Manuel', label: 'Manuel', section: 'Block B' },
+  { value: 'Jarell Brigette Manuel', label: 'Manuel', section: 'Block A' },
   { value: 'Basil Xavier Mendoza', label: 'Mendoza', section: 'Block C' },
   { value: 'Micaela Milana', label: 'Milana', section: 'Block B' },
   { value: 'Maxell Milay', label: 'Milay', section: 'Block C' },
