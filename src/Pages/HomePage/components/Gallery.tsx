@@ -248,7 +248,7 @@ const Gallery = (props: PropsInterface) => {
                   height="206px"
                 />
                 <ImageName>{student.value}</ImageName>
-                <ImageNickName>.....</ImageNickName>
+                <ImageNickName>“{student.nickname || '.....'}”</ImageNickName>
               </ImageContainer>
             </LazyLoad>
           );

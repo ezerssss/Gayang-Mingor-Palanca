@@ -125,6 +125,7 @@ export const ImageName = styled.div`
 export const ImageNickName = styled.div`
   font-weight: 400;
   font-size: 12px;
+  margin-top: 5px;
 `;
 
 export const ModalContainer = styled.div`

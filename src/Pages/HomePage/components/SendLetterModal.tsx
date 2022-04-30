@@ -94,6 +94,7 @@ import ValleVinceImage from '../../../images/batch/Valle Vince.jpg';
 import YuagImage from '../../../images/batch/Yuag.jpg';
 import YusingboImage from '../../../images/batch/Yusingbo.jpg';
 import YusonImage from '../../../images/batch/Yuson.jpg';
+import students from '../../../constants/students';
 
 interface PropsInterface {
   firestore: Firestore | undefined;
@@ -195,6 +196,10 @@ const SendLetterModal = (props: PropsInterface) => {
     Yuson: YusonImage,
   };
 
+  const studentInfo = students.find(
+    (student) => student.label === pickedStudent
+  );
+
   return (
     <ModalContainer>
       <CloseSVG id="close" onClick={closeModal} />
@@ -208,8 +213,8 @@ const SendLetterModal = (props: PropsInterface) => {
             }
             alt="face"
           />
-          <p id="name">{pickedStudent}</p>
-          <p id="nickname">A.K.A {pickedStudent}</p>
+          <p id="name">{studentInfo?.value || 'Not Found'}</p>
+          <p id="nickname">A.K.A {studentInfo?.nickname || '.....'}</p>
           <CloseSVG id="mobile" onClick={closeModal} />
         </div>
         <p id="scroll">Scroll down to send a message</p>

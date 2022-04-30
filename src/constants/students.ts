@@ -54,7 +54,12 @@ const students = [
   { value: 'Reynald Tim Lopos', label: 'Lopos', section: 'Block B' },
   { value: 'Judiel Macachor', label: 'Macachor', section: 'Block B' },
   { value: 'Ruzgel Madera', label: 'Madera', section: 'Block A' },
-  { value: 'Ezra Madafaking Magbanua', label: 'Magbanua', section: 'Block B' },
+  {
+    value: 'Ezra Madafaking Magbanua',
+    label: 'Magbanua',
+    section: 'Block B',
+    nickname: 'Madafaking bitch',
+  },
   { value: 'Luis Antonio Magpayo', label: 'Magpayo', section: 'Block C' },
   { value: 'Lindsay Marie Manlegro', label: 'Manlegro', section: 'Block C' },
   { value: 'Christian Manso', label: 'Manso', section: 'Block B' },
