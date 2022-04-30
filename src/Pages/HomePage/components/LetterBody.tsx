@@ -30,7 +30,7 @@ const LetterBody = (props: PropsInterface) => {
         };
         firestore?.sendLetter(
           letter,
-          emails[pickedStudent].trim() || 'lostemails'
+          emails[pickedStudent].trim() || 'lostletters'
         );
         setMessage('');
         setSender('');

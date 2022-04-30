@@ -133,7 +133,7 @@ const Gallery = (props: PropsInterface) => {
     Condor: CondorImage,
     Dangcogan: DangcoganImage,
     Deiparine: DeiparineImage,
-    DelaTorre: DelaTorreImage,
+    Delatorre: DelaTorreImage,
     Doloricon: DoloriconImage,
     Domail: DomailImage,
     Draper: DraperImage,
@@ -197,62 +197,58 @@ const Gallery = (props: PropsInterface) => {
     Yuson: YusonImage,
   };
 
+  const filteredBySection = students.filter((student) => {
+    if (!!selectedSection) {
+      if (student.section === selectedSection) {
+        return student;
+      }
+    } else {
+      return student;
+    }
+  });
+  const finalFilter = filteredBySection.filter((student) => {
+    if (selectedStudent) {
+      if (selectedStudent === student.label) {
+        return student;
+      }
+    } else {
+      return student;
+    }
+  });
+
   return (
     <GalleryContainer>
-      {students
-        .filter((student) => {
-          if (selectedSection) {
-            if (student.section === selectedSection) {
-              return student;
-            }
-          } else {
-            return student;
-          }
-        })
-        .filter((student) => {
-          if (selectedStudent && selectedStudent !== 'None') {
-            if (selectedStudent === student.label) {
-              return student;
-            }
-          } else {
-            return student;
-          }
-        })
-        .map((student) => {
-          let cleanName = student.label
-            .trim()
-            .replaceAll(' ', '')
-            .replaceAll('ñ', 'n');
+      {finalFilter.map((student) => {
+        const cleanName = student.label
+          .trim()
+          .replaceAll(' ', '')
+          .replaceAll('ñ', 'n');
 
-          if (cleanName === 'Delatorre') {
-            cleanName = 'DelaTorre';
-          }
-
-          return (
-            <LazyLoad
-              once
-              height={200}
-              offset={200}
-              key={student.label}
-              placeholder={<PlaceholderLoader />}
+        return (
+          <LazyLoad
+            once
+            height={200}
+            offset={200}
+            key={student.label}
+            placeholder={<PlaceholderLoader />}
+          >
+            <ImageContainer
+              onClick={() =>
+                openModal(student.label.trim().replaceAll(' ', ''))
+              }
             >
-              <ImageContainer
-                onClick={() =>
-                  openModal(student.label.trim().replaceAll(' ', ''))
-                }
-              >
-                <img
-                  src={ImageRef[cleanName]}
-                  alt="Face"
-                  width="206px"
-                  height="206px"
-                />
-                <ImageName>{student.value}</ImageName>
-                <ImageNickName>“{student.nickname || '.....'}”</ImageNickName>
-              </ImageContainer>
-            </LazyLoad>
-          );
-        })}
+              <img
+                src={ImageRef[cleanName]}
+                alt="Face"
+                width="206px"
+                height="206px"
+              />
+              <ImageName>{student.value}</ImageName>
+              <ImageNickName>“{student.nickname || '.....'}”</ImageNickName>
+            </ImageContainer>
+          </LazyLoad>
+        );
+      })}
     </GalleryContainer>
   );
 };
