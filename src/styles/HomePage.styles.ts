@@ -30,7 +30,7 @@ export const SubtitleDiv = styled.div`
   margin-top: 21px;
   margin-bottom: 50px;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 760px) {
     font-size: 15px;
     padding: 0px 25px;
   } ;
@@ -50,12 +50,25 @@ export const SelectContainer = styled.div`
       border-radius: 200px 0px 0px 200px;
     }
   }
-  .react-select-container-block {
+  .react-select-container-section {
     border-radius: 0px 200px 200px 0px;
     width: 10%;
 
     .react-select__control {
       border-radius: 0px 200px 200px 0px;
+    }
+
+    @media screen and (max-width: 1100px) {
+      width: 15%;
+    }
+    @media screen and (max-width: 770px) {
+      width: 20%;
+    }
+    @media screen and (max-width: 570px) {
+      width: 25%;
+    }
+    @media screen and (max-width: 440px) {
+      width: 30%;
     }
   }
 `;
@@ -103,7 +116,7 @@ export const CircleImage = styled.div`
 
 export const ImageName = styled.div`
   margin: auto;
-  width: 105px;
+  width: 200px;
   margin-top: 13px;
   font-weight: 700;
   font-size: 20px;

@@ -110,7 +110,6 @@ export const PalancasContainer = styled.div`
 export const LetterDiv = styled.div`
   page-break-inside: avoid;
   break-inside: avoid-column;
-  cursor: pointer;
   width: 100%;
   background-color: white;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);

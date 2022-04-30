@@ -200,7 +200,14 @@ const SendLetterModal = (props: PropsInterface) => {
       <CloseSVG id="close" onClick={closeModal} />
       <ImageModalContainer>
         <div>
-          <img src={ImageRef[pickedStudent]} alt="face" />
+          <img
+            src={
+              ImageRef[
+                pickedStudent.trim().replaceAll(' ', '').replaceAll('ñ', 'n')
+              ]
+            }
+            alt="face"
+          />
           <p id="name">{pickedStudent}</p>
           <p id="nickname">A.K.A {pickedStudent}</p>
           <CloseSVG id="mobile" onClick={closeModal} />

@@ -6,7 +6,6 @@ import {
   ImageNickName,
 } from '../../../styles/HomePage.styles';
 import LazyLoad from 'react-lazyload';
-import names from '../../../constants/names';
 import AcopiadoImage from '../../../images/batch/Acopiado.jpg';
 import AlbeosImage from '../../../images/batch/Albeos.jpg';
 import AlemaniaImage from '../../../images/batch/Alemania.jpg';
@@ -96,13 +95,16 @@ import YuagImage from '../../../images/batch/Yuag.jpg';
 import YusingboImage from '../../../images/batch/Yusingbo.jpg';
 import YusonImage from '../../../images/batch/Yuson.jpg';
 import PlaceholderLoader from './PlaceholderLoader';
+import students from '../../../constants/students';
 
 interface PropsInterface {
   openModal: (student: string) => void;
+  selectedSection: string;
+  selectedStudent: string;
 }
 
 const Gallery = (props: PropsInterface) => {
-  const { openModal } = props;
+  const { openModal, selectedSection, selectedStudent } = props;
 
   const ImageRef: any = {
     Acopiado: AcopiadoImage,
@@ -197,31 +199,60 @@ const Gallery = (props: PropsInterface) => {
 
   return (
     <GalleryContainer>
-      {names.map((name) => {
-        const cleanName = name.trim().replaceAll(' ', '');
-        return (
-          <LazyLoad
-            once
-            height={200}
-            offset={100}
-            key={name}
-            placeholder={<PlaceholderLoader />}
-          >
-            <ImageContainer
-              onClick={() => openModal(name.trim().replaceAll(' ', ''))}
+      {students
+        .filter((student) => {
+          if (selectedSection) {
+            if (student.section === selectedSection) {
+              return student;
+            }
+          } else {
+            return student;
+          }
+        })
+        .filter((student) => {
+          if (selectedStudent && selectedStudent !== 'None') {
+            if (selectedStudent === student.label) {
+              return student;
+            }
+          } else {
+            return student;
+          }
+        })
+        .map((student) => {
+          let cleanName = student.label
+            .trim()
+            .replaceAll(' ', '')
+            .replaceAll('ñ', 'n');
+
+          if (cleanName === 'Delatorre') {
+            cleanName = 'DelaTorre';
+          }
+
+          return (
+            <LazyLoad
+              once
+              height={200}
+              offset={200}
+              key={student.label}
+              placeholder={<PlaceholderLoader />}
             >
-              <img
-                src={ImageRef[cleanName]}
-                alt="Face"
-                width="206px"
-                height="206px"
-              />
-              <ImageName>{name}</ImageName>
-              <ImageNickName>“Insert NickName”</ImageNickName>
-            </ImageContainer>
-          </LazyLoad>
-        );
-      })}
+              <ImageContainer
+                onClick={() =>
+                  openModal(student.label.trim().replaceAll(' ', ''))
+                }
+              >
+                <img
+                  src={ImageRef[cleanName]}
+                  alt="Face"
+                  width="206px"
+                  height="206px"
+                />
+                <ImageName>{student.value}</ImageName>
+                <ImageNickName>.....</ImageNickName>
+              </ImageContainer>
+            </LazyLoad>
+          );
+        })}
     </GalleryContainer>
   );
 };

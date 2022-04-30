@@ -1,25 +1,43 @@
 import React from 'react';
 import { SelectContainer } from '../../../styles/HomePage.styles';
 import Select from 'react-select';
+import students from '../../../constants/students';
+import section from '../../../constants/sections';
 
-const Filters = () => {
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
+interface PropsInterface {
+  selectedSection: string;
+  handleSelectedSection: (selected: string) => void;
+  handleSelectedStudent: (selected: string) => void;
+}
+
+const Filters = (props: PropsInterface) => {
+  const { selectedSection, handleSelectedSection, handleSelectedStudent } =
+    props;
   return (
     <SelectContainer>
       <Select
-        options={options}
+        options={students.filter((student) => {
+          if (selectedSection) {
+            if (student.section === selectedSection) {
+              return student;
+            }
+          } else {
+            return student;
+          }
+        })}
         className="react-select-container"
         classNamePrefix="react-select"
+        placeholder="Search for a gadz"
+        onChange={(e) => handleSelectedStudent(e?.label || '')}
+        isClearable
       />
 
       <Select
-        options={options}
-        className="react-select-container-block"
+        options={section}
+        className="react-select-container-section"
         classNamePrefix="react-select"
+        defaultValue={section[3]}
+        onChange={(e) => handleSelectedSection(e?.value || '')}
       />
     </SelectContainer>
   );

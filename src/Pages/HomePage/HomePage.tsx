@@ -20,6 +20,8 @@ const HomePage = (props: PropsInterface) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pickedStudent, setPickedStudent] = useState('');
+  const [selectedSection, setSelectedSection] = useState('');
+  const [selectedStudent, setSelectedStudent] = useState('');
 
   const history = useHistory();
 
@@ -51,8 +53,20 @@ const HomePage = (props: PropsInterface) => {
         provident rem. Ab vitae in a harum! Voluptate aspernatur id, asperiores
         fuga quis numquam vero, libero debitis excepturi ducimus dolorum!
       </SubtitleDiv>
-      <Filters />
-      <Gallery openModal={openModal} />
+      <Filters
+        selectedSection={selectedSection}
+        handleSelectedSection={(selected: string) =>
+          setSelectedSection(selected)
+        }
+        handleSelectedStudent={(selected: string) =>
+          setSelectedStudent(selected)
+        }
+      />
+      <Gallery
+        openModal={openModal}
+        selectedSection={selectedSection}
+        selectedStudent={selectedStudent}
+      />
       <ScrollToTop
         smooth
         id="scroll-to-top"
