@@ -144,7 +144,7 @@ export const ModalContainer = styled.div`
 
   @media screen and (max-width: 950px) {
     display: block;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     #close {
       display: none;
@@ -158,6 +158,7 @@ export const ImageModalContainer = styled.div`
   align-items: center;
   width: 50%;
   height: 100%;
+  min-height: 600px;
   background-color: #2b2b2b;
   text-align: center;
   position: relative;

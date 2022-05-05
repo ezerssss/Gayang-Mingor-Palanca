@@ -5,6 +5,7 @@ export const LetterBodyContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  min-height: 600px;
   width: 50%;
 
   @media screen and (max-width: 950px) {

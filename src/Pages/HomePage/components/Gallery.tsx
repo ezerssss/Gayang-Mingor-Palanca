@@ -5,7 +5,6 @@ import {
   ImageName,
   ImageNickName,
 } from '../../../styles/HomePage.styles';
-import LazyLoad from 'react-lazyload';
 import AcopiadoImage from '../../../images/batch/Acopiado.jpg';
 import AlbeosImage from '../../../images/batch/Albeos.jpg';
 import AlemaniaImage from '../../../images/batch/Alemania.jpg';
@@ -94,7 +93,6 @@ import ValleVinceImage from '../../../images/batch/Valle Vince.jpg';
 import YuagImage from '../../../images/batch/Yuag.jpg';
 import YusingboImage from '../../../images/batch/Yusingbo.jpg';
 import YusonImage from '../../../images/batch/Yuson.jpg';
-import PlaceholderLoader from './PlaceholderLoader';
 import students from '../../../constants/students';
 
 interface PropsInterface {
@@ -225,13 +223,7 @@ const Gallery = (props: PropsInterface) => {
           .replaceAll('ñ', 'n');
 
         return (
-          <LazyLoad
-            once
-            height={200}
-            offset={200}
-            key={student.label}
-            placeholder={<PlaceholderLoader />}
-          >
+          <>
             <ImageContainer
               onClick={() =>
                 openModal(student.label.trim().replaceAll(' ', ''))
@@ -246,7 +238,7 @@ const Gallery = (props: PropsInterface) => {
               <ImageName>{student.value}</ImageName>
               <ImageNickName>“{student.nickname || '.....'}”</ImageNickName>
             </ImageContainer>
-          </LazyLoad>
+          </>
         );
       })}
     </GalleryContainer>
