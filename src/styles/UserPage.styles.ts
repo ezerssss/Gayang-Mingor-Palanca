@@ -26,7 +26,7 @@ const goUp = keyframes`
   100% {margin-top: 180px; margin-bottom: 50px;}
 `;
 const allowOverflow = keyframes`
-  0$ {overflow: hidden;}
+  0% {overflow: hidden;}
   100% {overflow-y: scroll;}
 `;
 
@@ -47,7 +47,10 @@ export const AnimationContainer = styled.div`
 export const WelcomeText = styled.div<PropsInterface>`
   position: absolute;
   text-align: center;
-  width: 100%;
+  width: 90%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   top: calc(50% - 96px);
   font-weight: 700;
   font-size: 96px;

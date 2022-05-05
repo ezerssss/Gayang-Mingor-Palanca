@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import Filters from './components/Filters';
 import Modal from 'react-modal';
 import SendLetterModal from './components/SendLetterModal';
+import Swal from 'sweetalert2';
 
 interface PropsInterface {
   firestore: Firestore | undefined;
@@ -25,9 +26,17 @@ const HomePage = (props: PropsInterface) => {
 
   const history = useHistory();
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     if (!user) {
-      firestore?.signIn();
+      try {
+        await firestore?.signIn();
+      } catch (er) {
+        Swal.fire(
+          'Something went wrong',
+          'Please contact Ezra Magbanua',
+          'error'
+        );
+      }
     } else {
       history.push('/palancas');
     }

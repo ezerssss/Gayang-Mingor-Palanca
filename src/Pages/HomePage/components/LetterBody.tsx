@@ -9,6 +9,7 @@ import {
 } from '../../../styles/LetterBody.styles';
 import Switch from 'react-switch';
 import { User } from '@firebase/auth';
+import { ClipLoader } from 'react-spinners';
 
 interface PropsInterface {
   firestore: Firestore | undefined;
@@ -20,12 +21,13 @@ const LetterBody = (props: PropsInterface) => {
   const { firestore, user, pickedStudent } = props;
   const [message, setMessage] = useState('');
   const [isAnon, setIsAnon] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleError = () => {
     Swal.fire('Something went wrong', 'Please contact Ezra Magbanua', 'error');
   };
 
-  const handleSendMessage = (
+  const handleSendMessage = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
@@ -36,11 +38,13 @@ const LetterBody = (props: PropsInterface) => {
           body: formattedMessage,
           sender: isAnon ? '' : user?.displayName || '',
         };
-        firestore?.sendLetter(
+        setIsLoading(true);
+        await firestore?.sendLetter(
           letter,
           emails[pickedStudent].trim() || 'lostletters'
         );
         setMessage('');
+        setIsLoading(false);
         Swal.fire('Palanca Sent', 'Thanks man fuck you!', 'success');
       } catch (er) {
         handleError();
@@ -81,8 +85,9 @@ const LetterBody = (props: PropsInterface) => {
         <ButtonContainer
           onClick={(e) => handleSendMessage(e)}
           isValid={!!message}
+          disabled={isLoading || !message}
         >
-          Send Message
+          {isLoading ? <ClipLoader size="20px" /> : 'Send Message'}
         </ButtonContainer>
       </form>
     </LetterBodyContainer>
