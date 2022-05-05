@@ -41,13 +41,19 @@ const LetterBody = (props: PropsInterface) => {
         setIsLoading(true);
         await firestore?.sendLetter(
           letter,
-          emails[pickedStudent].trim() || 'lostletters'
+          emails[pickedStudent].trim().replace('ñ', 'n') || 'lostletters'
         );
         setMessage('');
         setIsLoading(false);
-        Swal.fire('Palanca Sent', 'Thanks man fuck you!', 'success');
+        Swal.fire({
+          title: 'Palanca Sent',
+          text: 'Lamats bai',
+          icon: 'success',
+          confirmButtonText: 'Ge',
+        });
       } catch (er) {
         handleError();
+        setIsLoading(false);
         console.error(er);
       }
     } else {
@@ -78,7 +84,11 @@ const LetterBody = (props: PropsInterface) => {
           <Switch onChange={handleAnon} checked={isAnon} />
         </div>
         <textarea
-          placeholder="Message"
+          placeholder={
+            pickedStudent === 'Magbanua'
+              ? 'Tarong taronga jud nang akong message maka tilaw jud kag kumo ron'
+              : 'Message'
+          }
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />

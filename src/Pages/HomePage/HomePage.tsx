@@ -10,6 +10,7 @@ import Filters from './components/Filters';
 import Modal from 'react-modal';
 import SendLetterModal from './components/SendLetterModal';
 import Swal from 'sweetalert2';
+import { ReactComponent as LogoutSVG } from '../../images/logoutSVG.svg';
 
 interface PropsInterface {
   firestore: Firestore | undefined;
@@ -51,10 +52,27 @@ const HomePage = (props: PropsInterface) => {
     setIsModalOpen(false);
   };
 
+  const handleSignOut = async () => {
+    try {
+      await firestore?.signOut();
+    } catch (er) {
+      console.error(er);
+    }
+  };
+
+  const SignedInView = () => {
+    return (
+      <span>
+        <LogoutSVG onClick={handleSignOut} id="logout" />
+        {user?.displayName}
+      </span>
+    );
+  };
+
   return (
     <div>
       <SignInDiv onClick={handleButtonClick}>
-        {user?.displayName || 'Sign In via Google'}
+        {user ? <SignedInView /> : 'Sign In via Google'}
       </SignInDiv>
       <TitleDiv>Gayang Mingor</TitleDiv>
       <SubtitleDiv>
@@ -85,6 +103,7 @@ const HomePage = (props: PropsInterface) => {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
+        ariaHideApp={false}
         style={{
           content: {
             padding: '0px',

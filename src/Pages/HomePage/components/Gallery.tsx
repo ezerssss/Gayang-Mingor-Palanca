@@ -228,7 +228,9 @@ const Gallery = (props: PropsInterface) => {
           <div key={cleanName}>
             <ImageContainer
               onClick={() =>
-                openModal(student.label.trim().replaceAll(' ', ''))
+                openModal(
+                  student.label.trim().replaceAll(' ', '').replaceAll('ñ', 'n')
+                )
               }
             >
               <img

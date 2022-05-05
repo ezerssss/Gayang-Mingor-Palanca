@@ -201,7 +201,8 @@ const SendLetterModal = (props: PropsInterface) => {
   };
 
   const studentInfo = students.find(
-    (student) => student.label === pickedStudent
+    (student) =>
+      student.label.replaceAll(' ', '').replaceAll('ñ', 'n') === pickedStudent
   );
 
   return (

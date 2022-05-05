@@ -27,7 +27,7 @@ const emails: any = {
   Condor: 'rbcondor@cvisc.pshs.edu.ph',
   Dangcogan: 'fsdangcogan@cvisc.pshs.edu.ph',
   Deiparine: 'lddeiparine@cvisc.pshs.edu.ph',
-  Delatorre: 'eredelatorre@cvisc.pshs.edu.ph',
+  DelaTorre: 'eredelatorre@cvisc.pshs.edu.ph',
   Doloricon: 'cldoloricon@cvisc.pshs.edu.ph',
   Domail: 'mrdomail@cvisc.pshs.edu.ph',
   Draper: 'nadraper@cvisc.pshs.edu.ph',

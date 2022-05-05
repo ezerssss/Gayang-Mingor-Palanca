@@ -27,7 +27,7 @@ const Filters = (props: PropsInterface) => {
         })}
         className="react-select-container"
         classNamePrefix="react-select"
-        placeholder="Search for a gadz"
+        placeholder="Sige kinsa man"
         onChange={(e) => handleSelectedStudent(e?.label || '')}
         isClearable
       />

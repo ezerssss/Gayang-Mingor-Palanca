@@ -3,10 +3,25 @@ import { TEXT_GRAY } from '../constants/colors';
 import ModalBackground from '../images/Thing.png';
 
 export const SignInDiv = styled.div`
-  text-align: right;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
   margin-top: 42px;
-  margin-right: 42px;
+  padding-right: 42px;
   cursor: pointer;
+  box-sizing: border-box;
+
+  span {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+
+    #logout {
+      cursor: pointer;
+    }
+  }
 
   @media screen and (max-width: 770px) {
     margin-right: 12px;

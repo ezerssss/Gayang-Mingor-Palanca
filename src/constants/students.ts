@@ -63,7 +63,7 @@ const students = [
     value: 'Caroline Doloricon',
     label: 'Doloricon',
     section: 'Block A',
-    nickname: '....',
+    nickname: 'karolayn',
   },
   {
     value: 'Charles Artsmon Mondragon',
@@ -75,7 +75,7 @@ const students = [
     value: 'Charles Rene Monsales',
     label: 'Monsales',
     section: 'Block B',
-    nickname: 'Charles/ Rene/ Monsales',
+    nickname: 'Charles/ Rene/ Monsales / chuuni',
   },
   {
     value: 'Christian Kyle Baclay',
@@ -237,7 +237,7 @@ const students = [
     value: 'Jan Eul Anthony Ucang',
     label: 'Ucang',
     section: 'Block C',
-    nickname: '....',
+    nickname: 'J.E.A.N.U.',
   },
   {
     value: 'Jarell Brigette Manuel',
@@ -406,7 +406,7 @@ const students = [
     value: 'Milchival Runes Vincent Taer',
     label: 'Taer',
     section: 'Block C',
-    nickname: '....',
+    nickname: 'milch, mitch, Haachama',
   },
   {
     value: 'Nathan Josiah Elmido',
@@ -526,7 +526,7 @@ const students = [
     value: 'Vince Louie Valle',
     label: 'Valle Vince',
     section: 'Block B',
-    nickname: '....',
+    nickname: 'pabl0',
   },
   {
     value: 'Vince Raphael Alemania',

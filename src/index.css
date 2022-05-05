@@ -38,3 +38,7 @@ code {
   margin: auto;
   box-sizing: border-box;
 }
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
