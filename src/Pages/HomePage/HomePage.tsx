@@ -32,6 +32,15 @@ const HomePage = (props: PropsInterface) => {
       try {
         await firestore?.signIn();
       } catch (er) {
+        if (er instanceof Error) {
+          if (
+            er.message ===
+            'FirebaseError: Firebase: Error (auth/popup-closed-by-user).'
+          ) {
+            return;
+          }
+        }
+        console.error(er);
         Swal.fire(
           'Something went wrong',
           'Please contact Ezra Magbanua',
@@ -63,16 +72,19 @@ const HomePage = (props: PropsInterface) => {
   const SignedInView = () => {
     return (
       <span>
-        <LogoutSVG onClick={handleSignOut} id="logout" />
-        {user?.displayName}
+        <LogoutSVG onClick={handleSignOut} id="logout" /> {user?.displayName}
       </span>
     );
   };
 
   return (
     <div>
-      <SignInDiv onClick={handleButtonClick}>
-        {user ? <SignedInView /> : 'Sign In via Google'}
+      <SignInDiv>
+        {user ? (
+          <SignedInView />
+        ) : (
+          <p onClick={handleButtonClick}>Sign In via Google</p>
+        )}
       </SignInDiv>
       <TitleDiv>Gayang Mingor</TitleDiv>
       <SubtitleDiv>

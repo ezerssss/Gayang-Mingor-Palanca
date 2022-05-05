@@ -65,14 +65,31 @@ const LetterBody = (props: PropsInterface) => {
     if (user) {
       setIsAnon(!isAnon);
     } else {
-      Swal.fire('', 'You need to sign in.', 'info');
-      try {
-        await firestore?.signIn();
-        setIsAnon(!isAnon);
-      } catch (er) {
-        handleError();
-        console.error(er);
-      }
+      Swal.fire({
+        text: 'You need to sign in.',
+        icon: 'info',
+        showCloseButton: true,
+        showCancelButton: true,
+      })
+        .then(async (picked) => {
+          if (!picked.isConfirmed) {
+            return;
+          }
+          await firestore?.signIn();
+          setIsAnon(!isAnon);
+        })
+        .catch((er) => {
+          if (er instanceof Error) {
+            if (
+              er.message ===
+              'FirebaseError: Firebase: Error (auth/cancelled-popup-request).'
+            ) {
+              return;
+            }
+          }
+          handleError();
+          console.error(er);
+        });
     }
   };
 

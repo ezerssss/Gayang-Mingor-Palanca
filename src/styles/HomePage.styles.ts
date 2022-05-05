@@ -11,6 +11,10 @@ export const SignInDiv = styled.div`
   cursor: pointer;
   box-sizing: border-box;
 
+  p {
+    margin: 0;
+  }
+
   span {
     display: flex;
     width: 100%;
