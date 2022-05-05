@@ -9,7 +9,8 @@ import Firestore from '../../../services/Firestore';
 import AcopiadoImage from '../../../images/batch/Acopiado.jpg';
 import AlbeosImage from '../../../images/batch/Albeos.jpg';
 import AlemaniaImage from '../../../images/batch/Alemania.jpg';
-import AlidonImage from '../../../images/batch/Alidon.jpg';
+import AlidonImage from '../../../images/batch/Alidon.png';
+import CapadnganImage from '../../../images/batch/Capadngan.png';
 import AllosadaImage from '../../../images/batch/Allosada.jpg';
 import AmaquitonImage from '../../../images/batch/Amaquiton.jpg';
 import AmitImage from '../../../images/batch/Amit.jpg';
@@ -95,15 +96,17 @@ import YuagImage from '../../../images/batch/Yuag.jpg';
 import YusingboImage from '../../../images/batch/Yusingbo.jpg';
 import YusonImage from '../../../images/batch/Yuson.jpg';
 import students from '../../../constants/students';
+import { User } from '@firebase/auth';
 
 interface PropsInterface {
   firestore: Firestore | undefined;
+  user?: User | null;
   closeModal: () => void;
   pickedStudent: string;
 }
 
 const SendLetterModal = (props: PropsInterface) => {
-  const { firestore, closeModal, pickedStudent } = props;
+  const { firestore, user, closeModal, pickedStudent } = props;
 
   const ImageRef: any = {
     Acopiado: AcopiadoImage,
@@ -133,6 +136,7 @@ const SendLetterModal = (props: PropsInterface) => {
     Dangcogan: DangcoganImage,
     Deiparine: DeiparineImage,
     DelaTorre: DelaTorreImage,
+    Capadngan: CapadnganImage,
     Doloricon: DoloriconImage,
     Domail: DomailImage,
     Draper: DraperImage,
@@ -219,7 +223,11 @@ const SendLetterModal = (props: PropsInterface) => {
         </div>
         <p id="scroll">Scroll down to send a message</p>
       </ImageModalContainer>
-      <LetterBody firestore={firestore} pickedStudent={pickedStudent} />
+      <LetterBody
+        firestore={firestore}
+        user={user}
+        pickedStudent={pickedStudent}
+      />
     </ModalContainer>
   );
 };

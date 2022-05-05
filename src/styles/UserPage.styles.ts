@@ -128,6 +128,16 @@ export const LetterBody = styled.div`
   font-weight: 400;
   font-size: 16px;
   position: relative;
+
+  pre {
+    font-family: 'Inter';
+    margin: 0;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+  }
 `;
 
 export const LetterSender = styled.div`

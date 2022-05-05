@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TEXT_GRAY } from '../constants/colors';
+import ModalBackground from '../images/Thing.png';
 
 export const SignInDiv = styled.div`
   text-align: right;
@@ -126,6 +127,9 @@ export const ImageNickName = styled.div`
   font-weight: 400;
   font-size: 12px;
   margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ModalContainer = styled.div`
@@ -162,6 +166,10 @@ export const ImageModalContainer = styled.div`
   background-color: #2b2b2b;
   text-align: center;
   position: relative;
+  background-image: url(${ModalBackground});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 
   @media screen and (max-width: 950px) {
     width: 100%;

@@ -85,6 +85,7 @@ const HomePage = (props: PropsInterface) => {
       >
         <SendLetterModal
           firestore={firestore}
+          user={user}
           closeModal={closeModal}
           pickedStudent={pickedStudent}
         />

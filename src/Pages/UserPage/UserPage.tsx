@@ -12,6 +12,7 @@ import {
 } from '../../styles/UserPage.styles';
 import { ReactComponent as LogoutSVG } from '../../images/logoutSVG.svg';
 import { LetterInterface } from '../../interfaces/LetterInterface';
+import { collection, onSnapshot } from 'firebase/firestore';
 
 interface PropsInterface {
   firestore: Firestore | undefined;
@@ -41,6 +42,19 @@ const UserPage = (props: PropsInterface) => {
     };
 
     getLetters();
+
+    if (firestore && user) {
+      const unsub = onSnapshot(
+        collection(firestore.db, user.email || ''),
+        () => {
+          getLetters();
+        }
+      );
+
+      return () => {
+        unsub();
+      };
+    }
   }, [firestore, user]);
 
   return (
@@ -58,12 +72,14 @@ const UserPage = (props: PropsInterface) => {
             ? letters.map((letter, index) => {
                 return (
                   <LetterDiv key={index}>
-                    <LetterBody>{letter.body}</LetterBody>
+                    <LetterBody>
+                      <pre>{letter.body.replaceAll('<br>', '\n')}</pre>
+                    </LetterBody>
                     <LetterSender>From {letter.sender || 'Anon'}</LetterSender>
                   </LetterDiv>
                 );
               })
-            : 'You have no letters 🤭'}
+            : 'You have no letters 🤭😝🤪😂'}
         </PalancasContainer>
       </AnimationContainer>
     </>

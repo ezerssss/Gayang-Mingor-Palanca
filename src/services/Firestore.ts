@@ -12,7 +12,7 @@ import { LetterInterface } from '../interfaces/LetterInterface';
 
 export default class Firestore {
   private app;
-  private db;
+  public db;
   public auth;
 
   constructor(firebaseConfig: {

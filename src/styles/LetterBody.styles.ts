@@ -16,25 +16,11 @@ export const LetterBodyContainer = styled.div`
     width: 80%;
   }
 
-  input {
-    width: 100%;
-    height: 57px;
-    border-radius: 8px;
-    background: #ffffff;
-    border: 1px solid #cdcdcd;
-    font-weight: 400;
-    font-size: 16px;
-    padding: 0px 22px;
-    box-sizing: border-box;
-    font-family: 'Inter';
-
-    :focus {
-      outline: none;
-    }
-
-    ::placeholder {
-      color: #cdcdcd;
-    }
+  div {
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   textarea {
@@ -49,6 +35,7 @@ export const LetterBodyContainer = styled.div`
     font-weight: 400;
     font-size: 16px;
     font-family: 'Inter';
+    white-space: pre-wrap;
 
     :focus {
       outline: none;

@@ -8,7 +8,7 @@ import {
 import AcopiadoImage from '../../../images/batch/Acopiado.jpg';
 import AlbeosImage from '../../../images/batch/Albeos.jpg';
 import AlemaniaImage from '../../../images/batch/Alemania.jpg';
-import AlidonImage from '../../../images/batch/Alidon.jpg';
+import AlidonImage from '../../../images/batch/Alidon.png';
 import AllosadaImage from '../../../images/batch/Allosada.jpg';
 import AmaquitonImage from '../../../images/batch/Amaquiton.jpg';
 import AmitImage from '../../../images/batch/Amit.jpg';
@@ -25,6 +25,7 @@ import BorbonImage from '../../../images/batch/Borbon.jpg';
 import CamasuraImage from '../../../images/batch/Camasura.jpg';
 import CamelloImage from '../../../images/batch/Camello.jpg';
 import CanlasImage from '../../../images/batch/Canlas.jpg';
+import CapadnganImage from '../../../images/batch/Capadngan.png';
 import CastanaresImage from '../../../images/batch/Castanares.jpg';
 import CenizaImage from '../../../images/batch/Ceniza.jpg';
 import CondeImage from '../../../images/batch/Conde.jpg';
@@ -126,12 +127,13 @@ const Gallery = (props: PropsInterface) => {
     Camello: CamelloImage,
     Canlas: CanlasImage,
     Castanares: CastanaresImage,
+    Capadngan: CapadnganImage,
     Ceniza: CenizaImage,
     Conde: CondeImage,
     Condor: CondorImage,
     Dangcogan: DangcoganImage,
     Deiparine: DeiparineImage,
-    Delatorre: DelaTorreImage,
+    DelaTorre: DelaTorreImage,
     Doloricon: DoloriconImage,
     Domail: DomailImage,
     Draper: DraperImage,
@@ -223,7 +225,7 @@ const Gallery = (props: PropsInterface) => {
           .replaceAll('ñ', 'n');
 
         return (
-          <>
+          <div key={cleanName}>
             <ImageContainer
               onClick={() =>
                 openModal(student.label.trim().replaceAll(' ', ''))
@@ -238,7 +240,7 @@ const Gallery = (props: PropsInterface) => {
               <ImageName>{student.value}</ImageName>
               <ImageNickName>“{student.nickname || '.....'}”</ImageNickName>
             </ImageContainer>
-          </>
+          </div>
         );
       })}
     </GalleryContainer>

@@ -28,11 +28,7 @@ function App() {
     if (firestoreClass) {
       const unsubscribe = firestoreClass.auth.onAuthStateChanged(
         (fetchedUser) => {
-          if (fetchedUser) {
-            setUser(fetchedUser);
-          } else {
-            setUser(null);
-          }
+          setUser(fetchedUser);
         }
       );
 

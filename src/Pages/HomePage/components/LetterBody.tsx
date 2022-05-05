@@ -7,16 +7,23 @@ import {
   ButtonContainer,
   LetterBodyContainer,
 } from '../../../styles/LetterBody.styles';
+import Switch from 'react-switch';
+import { User } from '@firebase/auth';
 
 interface PropsInterface {
   firestore: Firestore | undefined;
+  user?: User | null;
   pickedStudent: string;
 }
 
 const LetterBody = (props: PropsInterface) => {
-  const { firestore, pickedStudent } = props;
-  const [sender, setSender] = useState('');
+  const { firestore, user, pickedStudent } = props;
   const [message, setMessage] = useState('');
+  const [isAnon, setIsAnon] = useState(true);
+
+  const handleError = () => {
+    Swal.fire('Something went wrong', 'Please contact Ezra Magbanua', 'error');
+  };
 
   const handleSendMessage = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -24,23 +31,19 @@ const LetterBody = (props: PropsInterface) => {
     e.preventDefault();
     if (message) {
       try {
+        const formattedMessage = message.replace(/(?:\r|\n|\r\n)/g, '<br>');
         const letter: LetterInterface = {
-          body: message,
-          sender: sender,
+          body: formattedMessage,
+          sender: isAnon ? '' : user?.displayName || '',
         };
         firestore?.sendLetter(
           letter,
           emails[pickedStudent].trim() || 'lostletters'
         );
         setMessage('');
-        setSender('');
         Swal.fire('Palanca Sent', 'Thanks man fuck you!', 'success');
       } catch (er) {
-        Swal.fire(
-          'Something went wrong',
-          'Please contact Ezra Magbanua',
-          'error'
-        );
+        handleError();
         console.error(er);
       }
     } else {
@@ -48,15 +51,28 @@ const LetterBody = (props: PropsInterface) => {
     }
   };
 
+  const handleAnon = async () => {
+    if (user) {
+      setIsAnon(!isAnon);
+    } else {
+      Swal.fire('', 'You need to sign in.', 'info');
+      try {
+        await firestore?.signIn();
+        setIsAnon(!isAnon);
+      } catch (er) {
+        handleError();
+        console.error(er);
+      }
+    }
+  };
+
   return (
     <LetterBodyContainer>
       <form id="container">
-        <input
-          type="text"
-          placeholder="Name (Optional)"
-          value={sender}
-          onChange={(e) => setSender(e.target.value)}
-        />
+        <div>
+          {isAnon ? 'Anon' : user?.displayName}{' '}
+          <Switch onChange={handleAnon} checked={isAnon} />
+        </div>
         <textarea
           placeholder="Message"
           value={message}
