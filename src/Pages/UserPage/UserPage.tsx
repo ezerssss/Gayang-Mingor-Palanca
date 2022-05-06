@@ -41,8 +41,6 @@ const UserPage = (props: PropsInterface) => {
       }
     };
 
-    getLetters();
-
     if (firestore && user) {
       const unsub = onSnapshot(
         collection(firestore.db, user.email || ''),

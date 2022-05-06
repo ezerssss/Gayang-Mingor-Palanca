@@ -72,7 +72,8 @@ const HomePage = (props: PropsInterface) => {
   const SignedInView = () => {
     return (
       <span>
-        <LogoutSVG onClick={handleSignOut} id="logout" /> {user?.displayName}
+        <LogoutSVG onClick={handleSignOut} id="logout" />{' '}
+        <p onClick={handleButtonClick}>{user?.displayName}</p>
       </span>
     );
   };
