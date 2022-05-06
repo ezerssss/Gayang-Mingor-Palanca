@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ScrollToTop from 'react-scroll-to-top';
 import { SignInDiv, SubtitleDiv, TitleDiv } from '../../styles/HomePage.styles';
 import Gallery from './components/Gallery';
@@ -11,6 +11,8 @@ import Modal from 'react-modal';
 import SendLetterModal from './components/SendLetterModal';
 import Swal from 'sweetalert2';
 import { ReactComponent as LogoutSVG } from '../../images/logoutSVG.svg';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { NotificationManager } from 'react-notifications';
 
 interface PropsInterface {
   firestore: Firestore | undefined;
@@ -77,6 +79,29 @@ const HomePage = (props: PropsInterface) => {
       </span>
     );
   };
+
+  const firstUpdate = useRef(true);
+
+  useEffect(() => {
+    if (firestore && user) {
+      const unsub = onSnapshot(
+        collection(firestore.db, user.email || ''),
+        () => {
+          if (firstUpdate.current) {
+            firstUpdate.current = false;
+            return;
+          }
+          NotificationManager.info('New Letter!', 'Click me!', 5000, () => {
+            history.push('/palancas');
+          });
+        }
+      );
+
+      return () => {
+        unsub();
+      };
+    }
+  }, [firestore, user]);
 
   return (
     <div>

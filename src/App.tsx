@@ -6,6 +6,7 @@ import AuthorizedRoute from './components/AuthorizedRoute';
 import HomePage from './Pages/HomePage/HomePage';
 import NotFound from './Pages/NotFound';
 import Firestore from './services/Firestore';
+import { NotificationContainer } from 'react-notifications';
 
 function App() {
   const [firestoreClass, setFirestoreClass] = useState<Firestore>();
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <div className="App">
+      <NotificationContainer />
       <Router>
         <Switch>
           <AuthorizedRoute path="/palancas" firestoreClass={firestoreClass} />
