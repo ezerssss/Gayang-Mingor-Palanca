@@ -123,6 +123,13 @@ export const LetterDiv = styled.div`
   text-align: left;
   transition: 0.3s ease-out;
   word-wrap: break-word;
+  position: relative;
+`;
+
+export const NewLetterIndicator = styled.div`
+  position: absolute;
+  right: -6px;
+  top: 10px;
 `;
 
 export const LetterBody = styled.div`

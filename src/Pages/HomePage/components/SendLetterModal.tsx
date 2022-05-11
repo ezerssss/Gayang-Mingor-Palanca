@@ -95,6 +95,7 @@ import ValleVinceImage from '../../../images/batch/Valle Vince.jpg';
 import YuagImage from '../../../images/batch/Yuag.jpg';
 import YusingboImage from '../../../images/batch/Yusingbo.jpg';
 import YusonImage from '../../../images/batch/Yuson.jpg';
+import AyagImage from '../../../images/batch/Ayag.png';
 import students from '../../../constants/students';
 import { User } from '@firebase/auth';
 
@@ -118,6 +119,7 @@ const SendLetterModal = (props: PropsInterface) => {
     Amit: AmitImage,
     Amoyo: AmoyoImage,
     Aradanas: AradanasImage,
+    Ayag: AyagImage,
     Baclay: BaclayImage,
     Balabat: BalabatImage,
     Balili: BaliliImage,

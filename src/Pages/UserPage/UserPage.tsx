@@ -4,15 +4,13 @@ import { useHistory } from 'react-router-dom';
 import Firestore from '../../services/Firestore';
 import {
   AnimationContainer,
-  LetterDiv,
-  LetterBody,
-  LetterSender,
   PalancasContainer,
   WelcomeText,
 } from '../../styles/UserPage.styles';
 import { ReactComponent as LogoutSVG } from '../../images/logoutSVG.svg';
 import { LetterInterface } from '../../interfaces/LetterInterface';
 import { collection, onSnapshot } from 'firebase/firestore';
+import Letter from './components/Letter';
 
 interface PropsInterface {
   firestore: Firestore | undefined;
@@ -42,14 +40,19 @@ const UserPage = (props: PropsInterface) => {
     };
 
     if (firestore && user) {
+      const fetchedNewLetters: string[] = [];
       const unsub = onSnapshot(
         collection(firestore.db, user.email || ''),
-        () => {
+        (snapshot) => {
+          snapshot.forEach((doc) => {
+            if (!doc.data().isFetched) fetchedNewLetters.push(doc.id);
+          });
           getLetters();
         }
       );
 
       return () => {
+        firestore.updateLetters(user.email || '', fetchedNewLetters);
         unsub();
       };
     }
@@ -67,16 +70,15 @@ const UserPage = (props: PropsInterface) => {
         </WelcomeText>
         <PalancasContainer>
           {letters.length
-            ? letters.map((letter, index) => {
-                return (
-                  <LetterDiv key={index}>
-                    <LetterBody>
-                      <pre>{letter.body.replaceAll('<br>', '\n')}</pre>
-                    </LetterBody>
-                    <LetterSender>From {letter.sender || 'Anon'}</LetterSender>
-                  </LetterDiv>
-                );
-              })
+            ? letters.map((letter, index) => (
+                <Letter
+                  key={index}
+                  body={letter.body}
+                  sender={letter.sender}
+                  date={letter.date}
+                  isFetched={letter.isFetched}
+                />
+              ))
             : 'You have no letters 🤭😝🤪😂'}
         </PalancasContainer>
       </AnimationContainer>

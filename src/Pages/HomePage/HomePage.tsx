@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import ScrollToTop from 'react-scroll-to-top';
 import { SignInDiv, SubtitleDiv, TitleDiv } from '../../styles/HomePage.styles';
 import Gallery from './components/Gallery';
@@ -26,6 +26,7 @@ const HomePage = (props: PropsInterface) => {
   const [pickedStudent, setPickedStudent] = useState('');
   const [selectedSection, setSelectedSection] = useState('');
   const [selectedStudent, setSelectedStudent] = useState('');
+  const [numberOfNewMessages, setNumberOfNewMessages] = useState(0);
 
   const history = useHistory();
 
@@ -76,24 +77,33 @@ const HomePage = (props: PropsInterface) => {
       <span>
         <LogoutSVG onClick={handleSignOut} id="logout" />{' '}
         <p onClick={handleButtonClick}>{user?.displayName}</p>
+        {!!numberOfNewMessages && <div>{numberOfNewMessages}</div>}
       </span>
     );
   };
-
-  const firstUpdate = useRef(true);
 
   useEffect(() => {
     if (firestore && user) {
       const unsub = onSnapshot(
         collection(firestore.db, user.email || ''),
-        () => {
-          if (firstUpdate.current) {
-            firstUpdate.current = false;
-            return;
-          }
-          NotificationManager.info('New Letter!', 'Click me!', 5000, () => {
-            history.push('/palancas');
+        (snapshot) => {
+          let fetchedNewMessages = 0;
+          snapshot.forEach((doc) => {
+            if (!doc.data().isFetched) {
+              fetchedNewMessages += 1;
+            }
           });
+          setNumberOfNewMessages(fetchedNewMessages);
+          if (fetchedNewMessages) {
+            NotificationManager.info(
+              `You have (${fetchedNewMessages}) new letter(s)!`,
+              'Click me!',
+              5000,
+              () => {
+                history.push('/palancas');
+              }
+            );
+          }
         }
       );
 
@@ -112,12 +122,16 @@ const HomePage = (props: PropsInterface) => {
           <p onClick={handleButtonClick}>Sign In via Google</p>
         )}
       </SignInDiv>
-      <TitleDiv>Gayang Mingor</TitleDiv>
-      <SubtitleDiv>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum ipsa
-        provident rem. Ab vitae in a harum! Voluptate aspernatur id, asperiores
-        fuga quis numquam vero, libero debitis excepturi ducimus dolorum!
+      <TitleDiv>Dear kōhai,</TitleDiv>
+      <SubtitleDiv marginBottom="30px">
+        As our journey in Pisay comes to an end, new frontiers await us in the
+        next chapter of our lives. Feel free to send us messages of support for
+        us to take in our future endeavors.
       </SubtitleDiv>
+      <SubtitleDiv marginBottom="30px">
+        “Lilipad at lalaban, gagawa ng kasaysayan”
+      </SubtitleDiv>
+      <SubtitleDiv>-Gayang Mingor</SubtitleDiv>
       <Filters
         selectedSection={selectedSection}
         handleSelectedSection={(selected: string) =>

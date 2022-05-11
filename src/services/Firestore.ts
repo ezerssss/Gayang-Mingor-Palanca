@@ -7,7 +7,14 @@ import {
   signOut,
 } from '@firebase/auth';
 import { initializeApp } from 'firebase/app';
-import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  writeBatch,
+} from 'firebase/firestore';
 import { LetterInterface } from '../interfaces/LetterInterface';
 
 export default class Firestore {
@@ -62,11 +69,31 @@ export default class Firestore {
         await addDoc(collection(this.db, to), {
           sender: letter.sender,
           body: letter.body,
+          isFetched: letter.isFetched,
+          date: letter.date,
         });
       }
       return true;
     } catch (er: any) {
       throw Error(er);
+    }
+  }
+
+  public async updateLetters(to: string, ids: string[]): Promise<void> {
+    if (!!ids) {
+      const batch = writeBatch(this.db);
+
+      try {
+        ids.forEach((id) => {
+          batch.update(doc(this.db, to, id), {
+            isFetched: true,
+          });
+        });
+        await batch.commit();
+      } catch (er: any) {
+        console.error(er);
+        throw new Error(er);
+      }
     }
   }
 
@@ -78,10 +105,12 @@ export default class Firestore {
         const fetchedLetter: LetterInterface = {
           body: doc.data().body,
           sender: doc.data().sender,
+          isFetched: doc.data().isFetched,
+          date: doc.data().date,
         };
         fetchedLetters.push(fetchedLetter);
       });
-      return fetchedLetters;
+      return fetchedLetters.sort((a, b) => b.date - a.date);
     } catch (er) {
       console.error(er);
       throw Error('No Letters Found');

@@ -36,7 +36,7 @@ const Filters = (props: PropsInterface) => {
         options={section}
         className="react-select-container-section"
         classNamePrefix="react-select"
-        defaultValue={section[3]}
+        defaultValue={section[0]}
         onChange={(e) => handleSelectedSection(e?.value || '')}
       />
     </SelectContainer>

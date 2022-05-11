@@ -37,6 +37,8 @@ const LetterBody = (props: PropsInterface) => {
         const letter: LetterInterface = {
           body: formattedMessage,
           sender: isAnon ? '' : user?.displayName || '',
+          isFetched: false,
+          date: Date.now(),
         };
         setIsLoading(true);
         await firestore?.sendLetter(
@@ -101,6 +103,7 @@ const LetterBody = (props: PropsInterface) => {
           <Switch onChange={handleAnon} checked={isAnon} />
         </div>
         <textarea
+          autoFocus
           placeholder={
             pickedStudent === 'Magbanua'
               ? 'Tarong taronga jud nang akong message maka tilaw jud kag kumo ron'

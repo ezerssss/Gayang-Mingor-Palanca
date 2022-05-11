@@ -51,7 +51,7 @@ const students = [
     value: 'Berenice Benitez',
     label: 'Benitez',
     section: 'Block A',
-    nickname: '....',
+    nickname: 'Berns',
   },
   {
     value: 'Bryan Rod Montecillo',
@@ -63,7 +63,7 @@ const students = [
     value: 'Caroline Doloricon',
     label: 'Doloricon',
     section: 'Block A',
-    nickname: 'karolayn',
+    nickname: 'THE miz karolayn',
   },
   {
     value: 'Charles Artsmon Mondragon',
@@ -99,7 +99,8 @@ const students = [
     value: 'Clark Louise Sevilla',
     label: 'Sevilla',
     section: 'Block C',
-    nickname: '....',
+    nickname:
+      'sevs, louise, sevi, clarkie https://www.instagram.com/https.louisee/ on ig <3',
   },
   {
     value: 'Crystille Jean Amaquiton',
@@ -147,7 +148,7 @@ const students = [
     value: 'Fatima Jonam Dangcogan',
     label: 'Dangcogan',
     section: 'Block C',
-    nickname: '....',
+    nickname: 'jonam',
   },
   {
     value: 'Florence Jeramie Legaspi',
@@ -171,7 +172,7 @@ const students = [
     value: 'Gaile Lynell Yuag',
     label: 'Yuag',
     section: 'Block C',
-    nickname: 'uYugUyugs',
+    nickname: 'baby girl',
   },
   {
     value: 'Gerard Niño Gorrero',
@@ -183,7 +184,7 @@ const students = [
     value: 'Gerxam Intano',
     label: 'Intano',
     section: 'Block B',
-    nickname: '....',
+    nickname: 'Jers',
   },
   {
     value: 'Giancarlo Albeos',
@@ -207,7 +208,7 @@ const students = [
     value: 'Ira Belle Electona',
     label: 'Electona',
     section: 'Block B',
-    nickname: '....',
+    nickname: 'ayrabil',
   },
   {
     value: 'Isabela Lobitaña',
@@ -231,7 +232,7 @@ const students = [
     value: 'James River Philip Yuson',
     label: 'Yuson',
     section: 'Block C',
-    nickname: '....',
+    nickname: 'Shun / Jiver / Phil',
   },
   {
     value: 'Jan Eul Anthony Ucang',
@@ -243,7 +244,7 @@ const students = [
     value: 'Jarell Brigette Manuel',
     label: 'Manuel',
     section: 'Block C',
-    nickname: 'chibi',
+    nickname: 'chibi || void chicken from stardew valley',
   },
   {
     value: 'Jaycee Mariel Amoyo',
@@ -303,7 +304,7 @@ const students = [
     value: 'Jomar Jr. Lepiten',
     label: 'Lepiten',
     section: 'Block C',
-    nickname: '....',
+    nickname: 'Jo/Mar/Jomar/babe',
   },
   {
     value: 'Joseph Duron',
@@ -321,13 +322,13 @@ const students = [
     value: 'Judiel Macachor',
     label: 'Macachor',
     section: 'Block B',
-    nickname: '....',
+    nickname: 'jo',
   },
   {
     value: 'Justin Gabriel Rallon',
     label: 'Rallon',
     section: 'Block B',
-    nickname: 'Justin',
+    nickname: 'Justin, Cybr',
   },
   {
     value: 'Justine Pepito',
@@ -339,7 +340,7 @@ const students = [
     value: 'Khirk Johann Ayag',
     label: 'Ayag',
     section: 'Block A',
-    nickname: '....',
+    nickname: 'ky',
   },
   {
     value: 'Leigh Therese Palahang',
@@ -388,7 +389,7 @@ const students = [
     label: 'Torralba',
     section: 'Block B',
     nickname:
-      'megu - meggie - ur favorite annoyance - m e r m e g onspotifylezgo',
+      'megu - meggie - ur favorite annoyance - m e r m e g onspotifylezgo - M3G - trampoline',
   },
   {
     value: 'Micaela Milana',
@@ -400,7 +401,7 @@ const students = [
     value: 'Micah Emmanuelle Ceniza',
     label: 'Ceniza',
     section: 'Block A',
-    nickname: '....',
+    nickname: 'micah mae',
   },
   {
     value: 'Milchival Runes Vincent Taer',
@@ -412,7 +413,7 @@ const students = [
     value: 'Nathan Josiah Elmido',
     label: 'Elmido',
     section: 'Block B',
-    nickname: 'Nate',
+    nickname: 'Sir Nate // nuggetman',
   },
   {
     value: 'Neil Christian Bolotaolo',
@@ -442,13 +443,13 @@ const students = [
     value: 'Raffy Mae Alidon',
     label: 'Alidon',
     section: 'Block A',
-    nickname: '....',
+    nickname: 'Raffy / Raf / Mae / Pyang / Taffee / Crush_Ni_Sir_Baje',
   },
   {
     value: 'Raya Alessandra Partosa',
     label: 'Partosa',
     section: 'Block C',
-    nickname: '....',
+    nickname: 'wyaii | rayatata',
   },
   {
     value: 'Reigne Hanneiken Gaite',
@@ -490,7 +491,7 @@ const students = [
     value: 'Shannen Marri Morikawa',
     label: 'Morikawa',
     section: 'Block B',
-    nickname: 'Shannen',
+    nickname: 'nen',
   },
   {
     value: 'Sheen Santos Capadngan',
@@ -508,7 +509,7 @@ const students = [
     value: 'Sophia Therese Unson',
     label: 'Unson',
     section: 'Block C',
-    nickname: 'Soph / Pia',
+    nickname: 'soph / pia || gacha addiction era (real) ',
   },
   {
     value: 'Stephen Clint Sales',

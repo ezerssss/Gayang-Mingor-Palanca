@@ -16,6 +16,7 @@ export const SignInDiv = styled.div`
   }
 
   span {
+    position: relative;
     display: flex;
     width: 100%;
     align-items: center;
@@ -24,6 +25,22 @@ export const SignInDiv = styled.div`
 
     #logout {
       cursor: pointer;
+    }
+
+    div {
+      margin: 0;
+      position: absolute;
+      background-color: #7663c3;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      top: -5px;
+      right: -5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 11px;
+      color: white;
     }
   }
 
@@ -42,19 +59,27 @@ export const TitleDiv = styled.div`
   } ;
 `;
 
-export const SubtitleDiv = styled.div`
+interface ISubtitleDiv {
+  marginBottom?: string;
+}
+
+export const SubtitleDiv = styled.div<ISubtitleDiv>`
   font-weight: 400;
   font-size: 18px;
   max-width: 709px;
   margin: auto;
   margin-top: 21px;
-  margin-bottom: 50px;
+  margin-bottom: ${(props) => props.marginBottom};
 
   @media screen and (max-width: 760px) {
     font-size: 15px;
     padding: 0px 25px;
   } ;
 `;
+
+SubtitleDiv.defaultProps = {
+  marginBottom: '50px',
+};
 
 export const SelectContainer = styled.div`
   display: flex;
