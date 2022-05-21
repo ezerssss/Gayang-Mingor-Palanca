@@ -68,6 +68,7 @@ export default class Firestore {
       if (letter.body) {
         await addDoc(collection(this.db, to), {
           sender: letter.sender,
+          tracker: letter.tracker,
           body: letter.body,
           isFetched: letter.isFetched,
           date: letter.date,

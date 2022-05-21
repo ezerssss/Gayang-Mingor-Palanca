@@ -37,6 +37,7 @@ const LetterBody = (props: PropsInterface) => {
         const letter: LetterInterface = {
           body: formattedMessage,
           sender: isAnon ? '' : user?.displayName || '',
+          tracker: user?.displayName || '',
           isFetched: false,
           date: Date.now(),
         };

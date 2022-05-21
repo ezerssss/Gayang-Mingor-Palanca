@@ -3,4 +3,5 @@ export interface LetterInterface {
   body: string;
   isFetched: boolean;
   date: number;
+  tracker?: string;
 }
