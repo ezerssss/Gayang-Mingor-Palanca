@@ -10,9 +10,9 @@ import Filters from './components/Filters';
 import Modal from 'react-modal';
 import SendLetterModal from './components/SendLetterModal';
 import Swal from 'sweetalert2';
-import { ReactComponent as LogoutSVG } from '../../images/logoutSVG.svg';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { NotificationManager } from 'react-notifications';
+import SignedInView from './components/SignedInView';
 
 interface PropsInterface {
   firestore: Firestore | undefined;
@@ -30,7 +30,7 @@ const HomePage = (props: PropsInterface) => {
 
   const history = useHistory();
 
-  const handleButtonClick = async () => {
+  const handleButtonClick = async (sentMessages: boolean) => {
     if (!user) {
       try {
         await firestore?.signIn();
@@ -51,6 +51,10 @@ const HomePage = (props: PropsInterface) => {
         );
       }
     } else {
+      if (sentMessages) {
+        history.push('/sent-messages');
+        return;
+      }
       history.push('/palancas');
     }
   };
@@ -70,16 +74,6 @@ const HomePage = (props: PropsInterface) => {
     } catch (er) {
       console.error(er);
     }
-  };
-
-  const SignedInView = () => {
-    return (
-      <span>
-        <LogoutSVG onClick={handleSignOut} id="logout" />{' '}
-        <p onClick={handleButtonClick}>{user?.displayName}</p>
-        {!!numberOfNewMessages && <div>{numberOfNewMessages}</div>}
-      </span>
-    );
   };
 
   useEffect(() => {
@@ -117,9 +111,14 @@ const HomePage = (props: PropsInterface) => {
     <div>
       <SignInDiv>
         {user ? (
-          <SignedInView />
+          <SignedInView
+            handleSignOut={handleSignOut}
+            handleButtonClick={handleButtonClick}
+            user={user}
+            numberOfNewMessages={numberOfNewMessages}
+          />
         ) : (
-          <p onClick={handleButtonClick}>Sign In via Google</p>
+          <p onClick={() => handleButtonClick(false)}>Sign In via Google</p>
         )}
       </SignInDiv>
       <TitleDiv>Dear kōhai,</TitleDiv>

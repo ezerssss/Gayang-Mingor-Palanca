@@ -13,8 +13,11 @@ import {
   doc,
   getDocs,
   getFirestore,
+  query,
+  where,
   writeBatch,
 } from 'firebase/firestore';
+import emails from '../constants/emails';
 import { LetterInterface } from '../interfaces/LetterInterface';
 
 export default class Firestore {
@@ -112,6 +115,32 @@ export default class Firestore {
         fetchedLetters.push(fetchedLetter);
       });
       return fetchedLetters.sort((a, b) => b.date - a.date);
+    } catch (er) {
+      console.error(er);
+      throw Error('No Letters Found');
+    }
+  }
+
+  public async getSentLetters(user: string | null): Promise<LetterInterface[]> {
+    try {
+      const fetchedSentLetters: LetterInterface[] = [];
+      const keys = Object.keys(emails);
+      for (const email of keys) {
+        const querySnapshot = await getDocs(
+          query(collection(this.db, emails[email]), where('sender', '==', user))
+        );
+        querySnapshot.forEach((doc) => {
+          const fetchedSentLetter: LetterInterface = {
+            body: doc.data().body,
+            sender: doc.data().sender,
+            isFetched: doc.data().isFetched,
+            date: doc.data().date,
+            to: email,
+          };
+          fetchedSentLetters.push(fetchedSentLetter);
+        });
+      }
+      return fetchedSentLetters.sort((a, b) => b.date - a.date);
     } catch (er) {
       console.error(er);
       throw Error('No Letters Found');

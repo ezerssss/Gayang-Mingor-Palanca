@@ -68,7 +68,7 @@ const UserPage = (props: PropsInterface) => {
             <LogoutSVG onClick={handleSignOut} id="logout" />
           </div>
         </WelcomeText>
-        <PalancasContainer>
+        <PalancasContainer isEmpty={!letters}>
           {letters.length
             ? letters.map((letter, index) => (
                 <Letter

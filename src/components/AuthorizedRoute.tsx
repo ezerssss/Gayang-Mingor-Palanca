@@ -2,6 +2,7 @@ import { User } from '@firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import NotFound from '../Pages/NotFound';
+import SentMessagesPage from '../Pages/SentMessagesPage/SentMessagesPage';
 import UserPage from '../Pages/UserPage/UserPage';
 import Firestore from '../services/Firestore';
 
@@ -28,13 +29,14 @@ const AuthorizedRoute = (props: PropsInterface) => {
     }
   }, [firestoreClass]);
 
-  return user ? (
-    <Route path={path}>
+  const Page =
+    path === '/palancas' ? (
       <UserPage user={user} firestore={firestoreClass} />
-    </Route>
-  ) : (
-    <NotFound />
-  );
+    ) : (
+      <SentMessagesPage user={user} firestore={firestoreClass} />
+    );
+
+  return user ? <Route path={path}>{Page}</Route> : <NotFound />;
 };
 
 export default AuthorizedRoute;

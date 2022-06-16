@@ -42,6 +42,11 @@ export const SignInDiv = styled.div`
       font-size: 11px;
       color: white;
     }
+
+    #sent {
+      cursor: pointer;
+      transform: rotate(45deg);
+    }
   }
 
   @media screen and (max-width: 770px) {

@@ -43,6 +43,10 @@ function App() {
       <Router>
         <Switch>
           <AuthorizedRoute path="/palancas" firestoreClass={firestoreClass} />
+          <AuthorizedRoute
+            path="/sent-messages"
+            firestoreClass={firestoreClass}
+          />
           <Route path="/">
             <HomePage firestore={firestoreClass} user={user} />
           </Route>

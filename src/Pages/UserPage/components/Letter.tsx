@@ -11,11 +11,16 @@ interface PropsInterface {
   body: string;
   sender: string;
   date: number;
-  isFetched: boolean;
+  isFetched?: boolean;
+  isSentLetter?: boolean;
+  to?: string;
 }
 
 const Letter = (props: PropsInterface) => {
-  const { body, sender, date, isFetched } = props;
+  const { body, sender, date, isFetched, isSentLetter, to } = props;
+
+  const subtitle = isSentLetter ? to : sender || 'Anon';
+
   return (
     <LetterDiv>
       {!isFetched && (
@@ -27,7 +32,8 @@ const Letter = (props: PropsInterface) => {
         <pre>{body.replaceAll('<br>', '\n')}</pre>
       </LetterBody>
       <LetterSender>
-        From {sender || 'Anon'} - {new Date(date).toLocaleDateString()}
+        {isSentLetter ? 'To ' : 'From '} {subtitle} -{' '}
+        {new Date(date).toLocaleDateString()}
       </LetterSender>
     </LetterDiv>
   );

@@ -31,7 +31,8 @@ const allowOverflow = keyframes`
 `;
 
 interface PropsInterface {
-  isFirst: boolean;
+  isFirst?: boolean;
+  isEmpty?: boolean;
 }
 
 export const AnimationContainer = styled.div`
@@ -89,7 +90,7 @@ export const WelcomeText = styled.div<PropsInterface>`
   }
 `;
 
-export const PalancasContainer = styled.div`
+export const PalancasContainer = styled.div<PropsInterface>`
   margin-top: 100vh;
   margin-left: auto;
   margin-right: auto;
@@ -99,7 +100,7 @@ export const PalancasContainer = styled.div`
   animation-delay: 3s;
   animation-fill-mode: forwards;
 
-  column-count: 3;
+  column-count: ${(props) => (props.isEmpty ? 1 : 3)};
   column-gap: 10px;
 
   @media screen and (max-width: 1010px) {
@@ -109,6 +110,10 @@ export const PalancasContainer = styled.div`
     column-count: 1;
   }
 `;
+
+PalancasContainer.defaultProps = {
+  isEmpty: true,
+};
 
 export const LetterDiv = styled.div`
   page-break-inside: avoid;
